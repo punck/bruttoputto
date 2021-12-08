@@ -1,5 +1,5 @@
-from sources.PuttoScraper import PuttoScraper
-from sources.PuttoScraper import ChromeDriver
+from sources.driver import ChromeDriver
+from sources.scraper import PuttoScraper
 
 
 if __name__ == "__main__":    
