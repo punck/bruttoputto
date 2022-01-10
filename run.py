@@ -1,11 +1,7 @@
-from sources.driver import ChromeDriver
 from sources.scraper import PuttoScraper
 
-
 if __name__ == "__main__":    
-    scraper = PuttoScraper(
-        ChromeDriver().driver
-    )
-    scraper.get_content("https://bet.szerencsejatek.hu/jatekok/putto/sorsolasok")
-    table = scraper.table
-    scraper.finish()
+    scraper = PuttoScraper()
+    
+    # date format: YYYY-MM-DD
+    res = scraper.get_table("2022-01-11")
