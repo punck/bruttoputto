@@ -11,4 +11,6 @@ if __name__ == "__main__":
     #scraper.dump_binary()
     #scraper.dump_text()
 
+    scraper.fetch_latest()
+
     print(len(res))
