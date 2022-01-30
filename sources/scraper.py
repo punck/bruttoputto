@@ -41,17 +41,20 @@ class PuttoScraper:
             return self._parse_table(response.text)
 
     def fetch_latest(self):
-        latest = self._get_latest_date()
-        date = datetime.today()
-        while date >= latest:
-            self._result.extend(self.fetch_table(date))
-            date = date - timedelta(days=1)
+        # cannot fetch latest if no previous result are available ()
+        if self._result:
+            latest = self._get_latest_date()
+            date = datetime.today()
+            while date >= latest:
+                print(f"Fetching {date.strftime(self.DATE_FORMAT)}")
+                self._result.extend(self.fetch_table(date))
+                date = date - timedelta(days=1)
 
-        self._result = [list(x) for x in set(tuple(x) for x in self._result)]
-        self._result.sort(reverse=True)
+            self._result = [list(x) for x in set(tuple(x) for x in self._result)]
+            self._result.sort(reverse=True)
 
-        self.dump_binary()
-        self.dump_text()
+            self.dump_binary()
+            self.dump_text()
 
     def fetch_all(self):
         self._cntr = 0
